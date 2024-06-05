@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "emotionevaluator"
+version = "0.1.0"
+description = "Classify the sentiment of a review"
+authors = ["RobinDeSmet <robin_de_smet@hotmail.be>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pandas = "^2.2.2"
+nltk = "^3.8.1"
+streamlit = "^1.35.0"
+fastapi = "^0.111.0"
+requests = "^2.32.3"
+pydantic = "^2.7.3"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
