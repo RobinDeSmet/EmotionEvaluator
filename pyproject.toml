@@ -4,6 +4,7 @@ version = "0.1.0"
 description = "Classify the sentiment of a review"
 authors = ["RobinDeSmet <robin_de_smet@hotmail.be>"]
 readme = "README.md"
+packages = [{ include = "src", from = "." }]
 
 [tool.poetry.dependencies]
 python = "^3.12"
