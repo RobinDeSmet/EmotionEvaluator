@@ -3,9 +3,9 @@
 import os
 import logging
 import pandas as pd
-from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from dotenv import load_dotenv
 from sklearn.metrics import classification_report
+from transformers import pipeline
 
 from src.custom_types import SentimentType
 
@@ -20,12 +20,29 @@ PREDICTED_SENTIMENT_COLUMN_NAME = os.getenv("PREDICTED_SENTIMENT_COLUMN_NAME")
 class SentimentAnalyser:
     """This class analyses the sentiment of a given text"""
 
-    def __init__(self, model=SentimentIntensityAnalyzer()):
+    def __init__(
+        self,
+        model: str = "distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+    ):
         logger.info("Initializing the sentiment analyser...")
 
         self.model = model
+        self.pipeline = pipeline("sentiment-analysis", model=self.model)
 
         logger.info("Sentiment analyser initialized successfully")
+
+    def set_model(self, model: str):
+        """Sets the model to be used for sentiment analysis.
+
+        Args:
+            model (str): The model to be used.
+        """
+        logger.info(f"Setting the model to: {model}...")
+
+        self.model = model
+        self.pipeline = pipeline("sentiment-analysis", model=self.model)
+
+        logger.info(f"Model set successfully")
 
     def get_sentiment(self, text: str) -> SentimentType:
         """Analyses the sentiment of the given text.
@@ -37,18 +54,18 @@ class SentimentAnalyser:
         """
         logger.debug(f"Analysing sentiment of the text...")
 
-        if isinstance(self.model, SentimentIntensityAnalyzer):
-            # Get the polarity scores of the text
-            scores = self.model.polarity_scores(text)
+        # Let the model generate a label for the sentiment
+        sentiment = self.pipeline(text)
 
-            logger.debug(scores)
-
-            # Determine the sentiment
-            sentiment = (
-                SentimentType.POSITIVE.value
-                if scores["compound"] > 0
-                else SentimentType.NEGATIVE.value
-            )
+        # Convert to the custom SentimentType
+        if sentiment[0]["label"] == "POSITIVE":
+            sentiment = SentimentType.POSITIVE.value
+        elif sentiment[0]["label"] == "NEGATIVE":
+            sentiment = SentimentType.NEGATIVE.value
+        elif sentiment[0]["label"] == "NEUTRAL":
+            sentiment = SentimentType.NEUTRAL.value
+        else:
+            sentiment = SentimentType.NOT_UNDERSTOOD.value
 
         logger.debug(f"Sentiment analysed successfully: {sentiment}")
 

@@ -20,15 +20,9 @@ if __name__ == "__main__":
 
     data = preprocessor.read_in_data()
 
-    logger.info(data.head())
-
     data = preprocessor.preprocess(data)
 
-    logger.info(data.head())
-
-    analyser.get_sentiment(data["review"].iloc[0])
-
-    analyser.get_sentiment(data["review"].iloc[1])
+    logger.info(f"Data: {data.head()}")
 
     data = analyser.analyse(data)
 
@@ -38,14 +32,19 @@ if __name__ == "__main__":
 
     logger.info("Closing the app")
 
-# RESULTS
+"""FINDINGS
+    - Applying stemming or lemmatization on the input text reduces the model's performance.
+      This is because the model is able to generalize well and gets extra information out
+      of the form the words are in.
+    - Cleaning the data however improves the model's performance.
+"""
 
-# Nltk VADER model:
-#  precision    recall  f1-score   support
+# BENCHMARK: distilbert/distilbert-base-uncased-finetuned-sst-2-english
+#               precision    recall  f1-score   support
 
-#           -1       0.74      0.45      0.56        58
-#            1       0.51      0.79      0.62        42
+#           -1       0.85      0.91      0.88        58
+#            1       0.87      0.79      0.82        42
 
-#     accuracy                           0.59       100
-#    macro avg       0.63      0.62      0.59       100
-# weighted avg       0.64      0.59      0.58       100
+#     accuracy                           0.86       100
+#    macro avg       0.86      0.85      0.85       100
+# weighted avg       0.86      0.86      0.86       100

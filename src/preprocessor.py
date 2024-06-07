@@ -18,6 +18,7 @@ load_dotenv()
 logger = logging.getLogger(__name__)
 
 DATA_PATH = os.getenv("DATA_PATH")
+MAX_SEQUENCE_LENGTH = int(os.getenv("MAX_SEQUENCE_LENGTH"))
 
 
 class Preprocessor:
@@ -80,11 +81,14 @@ class Preprocessor:
         """Apply the following preprocessing steps to the text:
             - removing HTML tags
             - removing URLs
-            - removing special characters and numbers
             - removing extra whitespace
-            - tokenizing
-            - removing stop words
-            - stem the text
+
+            Following things were tried but reduced the model's performance:
+            - Removing special characters and numbers
+            - Tokenizing the text
+            - Removing stop words
+            - Stemming or Lemmatizing the tokens
+
         Args:
             text (str): The text to preprocess.
 
@@ -92,6 +96,7 @@ class Preprocessor:
             str: The preprocessed text.
         """
         logger.debug(f"Preprocessing the text: {text}...")
+        # All the commented code below reduced the performance of the model
 
         # Remove the HTML tags
         logger.debug(f"Removing HTML tags...")
@@ -102,45 +107,21 @@ class Preprocessor:
         # Remove URLs
         text = re.sub(r"http\S+|www\S+|https\S+", "", text, flags=re.MULTILINE)
 
-        # Remove special characters and numbers
-        text = re.sub(r"\W", " ", text)
-        text = re.sub(r"\d", "", text)
-
         # Remove extra whitespace
         text = re.sub(r"\s+", " ", text).strip()
 
-        # Tokenize the text
-        logger.debug(f"Tokenizing the text...")
+        # Limit the sequence length
+        text = text[:MAX_SEQUENCE_LENGTH]
 
-        tokens = self.word_tokenizer(text.lower())
+        logger.debug(f"Text preprocessed successfully: {text}")
 
-        # Remove stop words
-        logger.debug(f"Removing stop words...")
-
-        tokens = [token for token in tokens if token not in self.stop_words]
-
-        # Stemming the tokens
-        logger.debug(f"Stemming the tokens...")
-        stemmed_tokens = [self.stemmer.stem(word) for word in tokens]
-
-        # Join the tokens back into a string
-        processed_text = " ".join(tokens)
-
-        logger.debug(f"Text preprocessed successfully: {processed_text}")
-
-        return processed_text
+        # return processed_text
+        return text
 
     def preprocess(
         self, data: pd.DataFrame, column_to_process: str = "review"
     ) -> pd.DataFrame:
-        """Preprocess the data by:
-            - removing HTML tags
-            - removing URLs
-            - removing special characters and numbers
-            - removing extra whitespace
-            - tokenizing
-            - removing stop words
-            - stem the text
+        """Cleaning up and preprocessing the data.
 
         Args:
             data (pd.DataFrame): The input dataframe.
