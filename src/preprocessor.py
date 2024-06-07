@@ -10,6 +10,8 @@ from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from dotenv import load_dotenv
 
+from src.custom_types import SentimentType
+
 load_dotenv()
 
 logger = logging.getLogger(__name__)
@@ -54,7 +56,15 @@ class Preprocessor:
                 if row[col] != "positive" and row[col] != "negative":
                     review += f",{str(row[col])}"
                 else:
-                    sentiments.append(1 if row[col] == "positive" else 0)
+                    sentiment = row[col]
+                    if sentiment == "positive":
+                        sentiments.append(SentimentType.POSITIVE.value)
+                    elif sentiment == "negative":
+                        sentiments.append(SentimentType.NEGATIVE.value)
+                    elif sentiment == "neutral":
+                        sentiments.append(SentimentType.NEUTRAL.value)
+                    else:
+                        sentiments.append(SentimentType.NOT_UNDERSTOOD.value)
                     break
             reviews.append(review[1:])
 
