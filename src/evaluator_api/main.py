@@ -22,8 +22,9 @@ def read_root():
     return {"Hello": "World"}
 
 
-@app.post("/evaulate/")
+@app.post("/evaluate/")
 async def evaluate_text(review: Review):
+    # TODO: Error handling -> Throw 500 and error message
     logger.info(f"Evaulating the sentiment of the review...")
     # Preprocess the text
     text = preprocessor.preprocess_text(review.content)
