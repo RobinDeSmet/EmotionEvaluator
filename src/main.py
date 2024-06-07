@@ -2,8 +2,9 @@
 
 import logging
 import sys
+import pandas as pd
 from src.utils import configure_logging
-from src.extract_data import extract_data
+from src.preprocessor import Preprocessor
 
 if __name__ == "__main__":
 
@@ -12,6 +13,10 @@ if __name__ == "__main__":
     logger.info("Starting the app...")
     logger.info("Arguments: %s", sys.argv)
 
-    df = extract_data()
-    logger.info(f"Data loaded successfully: {df.head()}")
+    preprocessor = Preprocessor()
+
+    data: pd.DataFrame = preprocessor.read_in_data()
+
+    logger.info(data.head())
+
     logger.info("Closing the app")
