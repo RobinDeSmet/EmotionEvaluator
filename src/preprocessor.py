@@ -1,13 +1,14 @@
 """This module contains the preprocessor for our Emotion Evaluator application."""
 
 import os
+import re
 import logging
 import pandas as pd
 from bs4 import BeautifulSoup
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-from nltk.stem import WordNetLemmatizer
+from nltk.stem import WordNetLemmatizer, PorterStemmer
 from dotenv import load_dotenv
 
 from src.custom_types import SentimentType
@@ -26,8 +27,9 @@ class Preprocessor:
         logger.info("Initializing the preprocessor...")
 
         self.word_tokenizer = word_tokenize
-        self.stop_words = stopwords.words("english")
+        self.stop_words = set(stopwords.words("english"))
         self.lemmatizer = WordNetLemmatizer()
+        self.stemmer = PorterStemmer()
 
         logger.info("Preprocessor initialized successfully")
 
@@ -77,9 +79,12 @@ class Preprocessor:
     def preprocess_text(self, text: str) -> str:
         """Apply the following preprocessing steps to the text:
             - removing HTML tags
+            - removing URLs
+            - removing special characters and numbers
+            - removing extra whitespace
             - tokenizing
             - removing stop words
-            - lemmatizing the text.
+            - stem the text
         Args:
             text (str): The text to preprocess.
 
@@ -94,6 +99,16 @@ class Preprocessor:
         soup = BeautifulSoup(text, "lxml")
         text = soup.get_text()
 
+        # Remove URLs
+        text = re.sub(r"http\S+|www\S+|https\S+", "", text, flags=re.MULTILINE)
+
+        # Remove special characters and numbers
+        text = re.sub(r"\W", " ", text)
+        text = re.sub(r"\d", "", text)
+
+        # Remove extra whitespace
+        text = re.sub(r"\s+", " ", text).strip()
+
         # Tokenize the text
         logger.debug(f"Tokenizing the text...")
 
@@ -102,18 +117,17 @@ class Preprocessor:
         # Remove stop words
         logger.debug(f"Removing stop words...")
 
-        filtered_tokens = [token for token in tokens if token not in self.stop_words]
+        tokens = [token for token in tokens if token not in self.stop_words]
 
-        # Lemmatize the tokens
-        logger.debug(f"Lemmatizing the tokens...")
-        lemmatized_tokens = [
-            self.lemmatizer.lemmatize(token) for token in filtered_tokens
-        ]
+        # Stemming the tokens
+        logger.debug(f"Stemming the tokens...")
+        stemmed_tokens = [self.stemmer.stem(word) for word in tokens]
 
         # Join the tokens back into a string
-        processed_text = " ".join(lemmatized_tokens)
+        processed_text = " ".join(tokens)
 
         logger.debug(f"Text preprocessed successfully: {processed_text}")
+
         return processed_text
 
     def preprocess(
@@ -121,9 +135,12 @@ class Preprocessor:
     ) -> pd.DataFrame:
         """Preprocess the data by:
             - removing HTML tags
+            - removing URLs
+            - removing special characters and numbers
+            - removing extra whitespace
             - tokenizing
             - removing stop words
-            - lemmatizing the text.
+            - stem the text
 
         Args:
             data (pd.DataFrame): The input dataframe.

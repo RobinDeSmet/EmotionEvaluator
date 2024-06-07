@@ -35,7 +35,17 @@ if __name__ == "__main__":
     report = analyser.benchmark(data)
 
     logger.info(f"\n{report}")
-    print(f"{data['sentiment']}")
-    print(f"{data['predicted_sentiment']}")
 
     logger.info("Closing the app")
+
+# RESULTS
+
+# Nltk VADER model:
+#  precision    recall  f1-score   support
+
+#           -1       0.74      0.45      0.56        58
+#            1       0.51      0.79      0.62        42
+
+#     accuracy                           0.59       100
+#    macro avg       0.63      0.62      0.59       100
+# weighted avg       0.64      0.59      0.58       100
