@@ -2,7 +2,6 @@
 
 import logging
 import sys
-import pandas as pd
 from src.utils import configure_logging
 from src.preprocessor import Preprocessor
 from src.sentiment_analyser import SentimentAnalyser
