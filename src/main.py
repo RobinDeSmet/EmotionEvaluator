@@ -10,12 +10,17 @@ if __name__ == "__main__":
 
     configure_logging()
     logger = logging.getLogger(__name__)
+
     logger.info("Starting the app...")
     logger.info("Arguments: %s", sys.argv)
 
     preprocessor = Preprocessor()
 
-    data: pd.DataFrame = preprocessor.read_in_data()
+    data = preprocessor.read_in_data()
+
+    logger.info(data.head())
+
+    data = preprocessor.preprocess(data)
 
     logger.info(data.head())
 
