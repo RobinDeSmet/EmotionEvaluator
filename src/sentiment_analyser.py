@@ -104,6 +104,7 @@ class SentimentAnalyser:
         Returns:
             str | dict: The classification report of the sentiment analyser.
         """
+        # TODO: Extend with visuals, metrics to a file,...
         logger.info(f"Benchmarking the sentiment analyser...")
 
         # Get the classification report

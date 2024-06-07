@@ -81,6 +81,7 @@ class Preprocessor:
             - removing HTML tags
             - removing URLs
             - removing extra whitespace
+            TODO: Spelling correction
 
             Following things were tried but reduced the model's performance:
             - Removing special characters and numbers
