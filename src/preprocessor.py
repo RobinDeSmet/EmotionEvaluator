@@ -96,8 +96,6 @@ class Preprocessor:
             str: The preprocessed text.
         """
         logger.debug(f"Preprocessing the text: {text}...")
-        # All the commented code below reduced the performance of the model
-
         # Remove the HTML tags
         logger.debug(f"Removing HTML tags...")
 
