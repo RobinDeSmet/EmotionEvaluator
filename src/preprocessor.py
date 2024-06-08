@@ -5,9 +5,6 @@ import re
 import logging
 import pandas as pd
 from bs4 import BeautifulSoup
-from nltk.corpus import stopwords
-from nltk.tokenize import word_tokenize
-from nltk.stem import WordNetLemmatizer, PorterStemmer
 from dotenv import load_dotenv
 
 from src.custom_types import SentimentType
@@ -25,12 +22,6 @@ class Preprocessor:
 
     def __init__(self):
         logger.info("Initializing the preprocessor...")
-
-        self.word_tokenizer = word_tokenize
-        self.stop_words = set(stopwords.words("english"))
-        self.lemmatizer = WordNetLemmatizer()
-        self.stemmer = PorterStemmer()
-
         logger.info("Preprocessor initialized successfully")
 
     def read_in_data(self, data_path: str = DATA_PATH) -> pd.DataFrame:
