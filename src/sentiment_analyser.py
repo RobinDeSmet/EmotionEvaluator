@@ -52,7 +52,7 @@ class SentimentAnalyser:
         Returns:
             str: The sentiment of the text (either positive or negative).
         """
-        logger.debug(f"Analysing sentiment of the text...")
+        logger.info(f"Analysing sentiment of the text: {text}...")
 
         # Let the model generate a label for the sentiment
         sentiment = self.pipeline(text)
@@ -60,14 +60,18 @@ class SentimentAnalyser:
         # Convert to the custom SentimentType
         if sentiment[0]["label"] == "POSITIVE":
             sentiment = SentimentType.POSITIVE.value
+            sentiment_log = SentimentType.POSITIVE
         elif sentiment[0]["label"] == "NEGATIVE":
             sentiment = SentimentType.NEGATIVE.value
+            sentiment_log = SentimentType.NEGATIVE
         elif sentiment[0]["label"] == "NEUTRAL":
             sentiment = SentimentType.NEUTRAL.value
+            sentiment_log = SentimentType.NEUTRAL
         else:
             sentiment = SentimentType.NOT_UNDERSTOOD.value
+            sentiment_log = SentimentType.NOT_UNDERSTOOD
 
-        logger.debug(f"Sentiment analysed successfully: {sentiment}")
+        logger.info(f"Resulting sentiment: {sentiment_log}")
 
         return sentiment
 

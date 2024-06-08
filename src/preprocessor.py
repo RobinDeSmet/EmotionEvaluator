@@ -86,10 +86,9 @@ class Preprocessor:
         Returns:
             str: The preprocessed text.
         """
-        logger.debug(f"Preprocessing the text: {text}...")
-        # Remove the HTML tags
-        logger.debug(f"Removing HTML tags...")
+        logger.info(f"Preprocessing the text: {text}...")
 
+        # Remove the HTML tags
         soup = BeautifulSoup(text, "lxml")
         text = soup.get_text()
 
@@ -102,7 +101,7 @@ class Preprocessor:
         # Limit the sequence length
         text = text[:MAX_SEQUENCE_LENGTH]
 
-        logger.debug(f"Text preprocessed successfully: {text}")
+        logger.info(f"Text preprocessed successfully: {text}")
 
         # return processed_text
         return text
