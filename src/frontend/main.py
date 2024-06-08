@@ -1,9 +1,12 @@
 import streamlit as st
 import requests
-
+import logging
 from http import HTTPStatus
 from src.custom_types import SentimentType
 from src.frontend.utils import url
+from src.utils import configure_logging
+
+configure_logging()
 
 st.title("Emotion Evaluator")
 

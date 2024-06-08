@@ -7,5 +7,8 @@ backend:
 frontend:
 	streamlit run src/frontend/main.py
 
+test:
+	poetry run pytest
+
 setup-nltk:
 	poetry run python -c "import nltk; nltk.download('all');"

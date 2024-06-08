@@ -1,4 +1,6 @@
 import logging
+import os
+from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from http import HTTPStatus
@@ -11,9 +13,12 @@ from src.utils import configure_logging
 configure_logging()
 logger = logging.getLogger(__name__)
 
+load_dotenv()
+MODEL = os.getenv("MODEL")
+
 app = FastAPI()
 preprocessor = Preprocessor()
-sentiment_analyser = SentimentAnalyser()
+sentiment_analyser = SentimentAnalyser(model=MODEL)
 
 
 class Review(BaseModel):

@@ -1,7 +1,10 @@
 import os
 from dotenv import load_dotenv
+import logging
 
 load_dotenv()
+
+logger = logging.getLogger(__name__)
 
 BASE_URL = os.getenv("BASE_URL")
 
@@ -15,4 +18,8 @@ def url(path: str) -> str:
     Returns:
         str: The URL to the resource.
     """
-    return f"{BASE_URL}/{path}"
+    url = f"{BASE_URL}{path}"
+
+    logger.info(f"Trying to connect to following resourcse: {url}...")
+
+    return url
