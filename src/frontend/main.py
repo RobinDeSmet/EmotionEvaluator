@@ -1,7 +1,9 @@
 import streamlit as st
 import requests
 
+from http import HTTPStatus
 from src.custom_types import SentimentType
+from src.frontend.utils import url
 
 st.title("Emotion Evaluator")
 
@@ -19,19 +21,20 @@ button_clicked = st.button(
 )
 
 if button_clicked:
-    # TODO: Error handling: Put the error message in a st.error()
-    # TODO: Put the base URL in .env
-    response = requests.post("http://localhost:8000/evaluate/", json={"content": text})
+    response = requests.post(url("/evaluate/"), json={"content": text})
 
-    sentiment = response.json()["sentiment"]
-
-    if sentiment == SentimentType.POSITIVE.value:
-        sentiment = "Positive"
-    elif sentiment == SentimentType.NEGATIVE.value:
-        sentiment = "Negative"
-    elif sentiment == SentimentType.NEUTRAL.value:
-        sentiment = "Neutral"
+    if response.status_code != HTTPStatus.OK:
+        st.error(f"{response.json()['error']}")
     else:
-        sentiment = "Not Understood"
+        sentiment = response.json()["sentiment"]
 
-    st.write(f"The sentiment of the text is: {sentiment}")
+        if sentiment == SentimentType.POSITIVE.value:
+            sentiment = "Positive 👍"
+        elif sentiment == SentimentType.NEGATIVE.value:
+            sentiment = "Negative 👎"
+        elif sentiment == SentimentType.NEUTRAL.value:
+            sentiment = "Neutral 😐"
+        else:
+            sentiment = "Not Understood 🤔"
+
+        st.write(f"The sentiment of the text is: {sentiment}")
