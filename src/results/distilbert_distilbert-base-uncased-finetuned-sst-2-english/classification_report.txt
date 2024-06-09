@@ -1,4 +1,4 @@
-Generated in 0:00:10.939340s
+[Amount of samples: 100] Generated in 0:00:09.187120s
 
               precision    recall  f1-score   support
 
@@ -8,3 +8,35 @@ Generated in 0:00:10.939340s
     accuracy                           0.86       100
    macro avg       0.86      0.85      0.85       100
 weighted avg       0.86      0.86      0.86       100
+
+
+Misclassified reviews:
+
+[Predicted: 0, Truth: 1] Review: One of the other reviewers has mentioned that after watching just 1 Oz episode you'll be hooked. They are right, as this is exactly what happened with me.The first thing that struck me about Oz was its brutality and unflinching scenes of violence, which set in right from the word GO. Trust me, this is not a show for the faint hearted or timid. This show pulls no punches with regards to drugs, sex or violence. Its is hardcore, in the classic use of the word.It is called OZ as that is the nickname given to th
+
+[Predicted: 1, Truth: 0] Review: So im not a big fan of Boll's work but then again not many are. I enjoyed his movie Postal (maybe im the only one). Boll apparently bought the rights to use Far Cry long ago even before the game itself was even finsished. People who have enjoyed killing mercs and infiltrating secret research labs located on a tropical island should be warned, that this is not Far Cry... This is something Mr Boll have schemed together along with his legion of schmucks.. Feeling loneley on the set Mr Boll invites three of his
+
+[Predicted: 0, Truth: 1] Review: Some films just simply should not be remade. This is one of them. In and of itself it is not a bad film. But it fails to capture the flavor and the terror of the 1963 film of the same title. Liam Neeson was excellent as he always is, and most of the cast holds up, with the exception of Owen Wilson, who just did not bring the right feel to the character of Luke. But the major fault with this version is that it strayed too far from the Shirley Jackson story in it's attempts to be grandiose and lost some of th
+
+[Predicted: 0, Truth: 1] Review: After the success of Die Hard and it's sequels it's no surprise really that in the 1990s, a glut of 'Die Hard on a .....' movies cashed in on the wrong guy, wrong place, wrong time concept. That is what they did with Cliffhanger, Die Hard on a mountain just in time to rescue Sly 'Stop or My Mom Will Shoot' Stallone's career.Cliffhanger is one big nit-pickers dream, especially to those who are expert at mountain climbing, base-jumping, aviation, facial expressions, acting skills. All in all it's full of excu
+
+[Predicted: 0, Truth: 1] Review: Okay, so this series kind of takes the route of 'here we go again!' Week in, week out David Morse's character helps out his ride who is in a bit of a pickle - but what's wrong with that!? David Morse is one of the greatest character actors out there, and certainly the coolest, and to have him in a series created by David Koepp - a great writer - is heaven!!Due to the lack of love for this show by many, I can't see it going to a season series - but you never know? The amount of rubbish that has made it beyon
+
+[Predicted: 0, Truth: 1] Review: This movie struck home for me. Being 29, I remember the '80's and my father working in a factory. I figured, if I worked hard too, if I had pride and never gave up I too could have the American Dream, the house, a few kids, a car all to call my own. I've noted however, without a degree in something (unlike my father that quit at ninth grade) and a keen sense of greed and laziness, you can't get anywhere.I would like to know if anyone has this movie on DVD or VHS. it's made for TV, and I just saw it an hour 
+
+[Predicted: 0, Truth: 1] Review: Preston Sturgis' THE POWER AND THE GLORY was unseen by the public for nearly twenty or thirty years until the late 1990s when it resurfaced and even showed up on television. In the meantime it had gained in notoriety because Pauline Kael's THE CITIZEN KANE BOOK had suggested that the Herman Mankiewicz - Orson Welles screenplay for KANE was based on Sturgis' screenplay here. As is mentioned in the beginning of this thread for the film on the IMDb web site, Kael overstated her case.There are about six narrato
+
+[Predicted: 0, Truth: 1] Review: Bela Lugosi appeared in several of these low budget chillers for Monogram Studios in the 1940's and The Corpse Vanishes is one of the better ones.Bela plays a mad scientist who kidnaps young brides and kills them and then extracts fluid from their bodies so he can keep his ageing wife looking young. After a reporter and a doctor stay the night at his home and discover he is responsible for the brides' deaths, the following morning they report these murders to the police and the mad scientist is shot and dro
+
+[Predicted: 1, Truth: 0] Review: An unmarried woman named Stella (Bette Midler) gets pregnant by a wealthy man (Stephen Collins). He offers to marry her out of a sense of obligation but she turns him down flat and decides to raise the kid on her own. Things go OK until the child named Jenny (Trini Alvarado) becomes a teenager and things gradually (and predictably) become worse.I've seen both the silent version and sound version of "Stella Dallas". Neither one affected me much (and I cry easily) but they were well-made if dated. Trying to r
+
+[Predicted: 1, Truth: 0] Review: I really like Salman Kahn so I was really disappointed when I seen this movie. It didn't have much of a plot and what they did have was not that appealing. Salman however did look good in the movie looked young and refreshed but was worth the price of this DVD. The music was not bad it was quite nice. Usually Indian movies are at least two to three hours long but this was a very short movie for an Indian film. The American actress that played in the movie is from the television hit series Heroes, Ali Larter
+
+[Predicted: 1, Truth: 0] Review: Caddyshack Two is a good movie by itself but compared to the original it cant stack up. Robert Stack is a horrible replacement for Ted Knight and Jackie Mason, while funny just cant compete with Rodney Dangerfield. Ty Webb is funny, being the only character from the original. Most of the other characters in the movie lack the punch of the original (Henry Wilcoxon for example) except for the hystericly funny lawyer Peter Blunt, being played by Randy Quaid. Every line he says reminds me of the originals humor
+
+[Predicted: 1, Truth: 0] Review: Upon viewing Tobe Hooper's gem, Crocodile, in 2000, I developed a great interest in the college/crocodile niche of the exploitation/monster genre. I look forward to a wayward producer to follow up with several sequels to these delightful bonbons of camp goodness. If only Ed Wood could bring his subtle sense of flair and dignity to these remarkable scripts. With Ed writing the scripts, and a room full of monkees creating crocodile special effects on a computer, all we'd need would be a cast of crocky fodder 
+
+[Predicted: 0, Truth: 1] Review: The Last Hard Men finds James Coburn an outlaw doing a long sentence breaking free from a chain gang. Do he and his friends head for the Mexican border from jail and safety. No they don't because Coburn has a mission of revenge. To kill the peace officer who brought him in and in the process killed his woman.That peace officer is Charlton Heston who is now retired and he knows what Coburn is after. As he explains it to his daughter, Barbara Hershey, Coburn was holed up in a shack and was involved in a Waco 
+
+[Predicted: 0, Truth: 1] Review: This film took me by surprise. I make it a habit of finding out as little as possible about films before attending because trailers and reviews provide spoiler after spoiler. All I knew upon entering the theater is that it was a documentary about a long married couple and that IMDb readers gave it a 7.8, Rotten Tomatoes users ranked it at 7.9 and the critics averaged an amazing 8.2! If anything, they UNDERRATED this little gem.Filmmaker Doug Block decided to record his parents "for posterity" and at the beg
+
