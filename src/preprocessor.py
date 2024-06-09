@@ -86,7 +86,7 @@ class Preprocessor:
         Returns:
             str: The preprocessed text.
         """
-        logger.info(f"Preprocessing the text: {text}...")
+        logger.info(f"Preprocessing the text: {text}")
 
         # Remove the HTML tags
         soup = BeautifulSoup(text, "lxml")

@@ -22,7 +22,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--output_dir",
-        default=f"src/results/{MODEL}",
+        default="src/results",
         type=str,
         help="Path to the output file",
     )
@@ -39,11 +39,11 @@ if __name__ == "__main__":
     logger.info(f"Arguments: {args}")
 
     preprocessor = Preprocessor()
-    sentiment_analyser = SentimentAnalyser()
+    sentiment_analyser = SentimentAnalyser(model=args.model)
 
     data = preprocessor.read_in_data(data_path=args.data)
 
-    report = sentiment_analyser.benchmark(data)
+    report = sentiment_analyser.benchmark(data, output_dir=args.output_dir)
 
     logger.info(f"\n{report}")
 

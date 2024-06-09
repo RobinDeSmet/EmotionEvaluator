@@ -23,6 +23,6 @@ def get_url(path: str) -> str:
     """
     url = f"{BASE_URL}{path}"
 
-    logger.info(f"Trying to connect to following resourcse: {url}...")
+    logger.info(f"Requesting url: {url}")
 
     return url
