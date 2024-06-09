@@ -118,9 +118,9 @@ class Preprocessor:
         Returns:
             pd.DataFrame: The processed dataframe.
         """
-        logger.info(f"Preprocessing the data...")
+        logger.info("Preprocessing the data...")
 
         data[column_to_process] = data[column_to_process].apply(self.preprocess_text)
 
-        logger.info(f"Data preprocessed successfully")
+        logger.info("Data preprocessed successfully")
         return data

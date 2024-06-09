@@ -1,6 +1,9 @@
+"""This module contains utility functions for the frontend."""
+
 import os
-from dotenv import load_dotenv
 import logging
+
+from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -9,7 +12,7 @@ logger = logging.getLogger(__name__)
 BASE_URL = os.getenv("BASE_URL")
 
 
-def url(path: str) -> str:
+def get_url(path: str) -> str:
     """Generates a URL from a path.
 
     Args:

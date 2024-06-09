@@ -1,13 +1,16 @@
-from fastapi.testclient import TestClient
+"""Test for evaluator api"""
+
 from http import HTTPStatus
+
+from fastapi.testclient import TestClient
 from src.evaluator_api.main import app
 from src.custom_types import SentimentType
-import pytest
 
 client = TestClient(app)
 
 
 def test_evaluate_text_works():
+    """Test the /evaluate/ endpoint with a valid review."""
     # Define a test review
     review = {"content": "This is a positive review!"}
 
@@ -25,6 +28,7 @@ def test_evaluate_text_works():
 
 
 def test_evaluate_text_fails():
+    """Test the /evaluate/ endpoint with invalid input data."""
     # Define an invalid test review
     review = {"contentsss": ""}
 

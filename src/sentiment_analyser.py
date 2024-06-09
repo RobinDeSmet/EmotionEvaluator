@@ -42,7 +42,7 @@ class SentimentAnalyser:
         self.model = model
         self.pipeline = pipeline("sentiment-analysis", model=self.model)
 
-        logger.info(f"Model set successfully")
+        logger.info("Model set successfully")
 
     def get_sentiment(self, text: str) -> SentimentType:
         """Analyses the sentiment of the given text.
@@ -87,13 +87,13 @@ class SentimentAnalyser:
         Returns:
             pd.DataFrame: The processed dataframe.
         """
-        logger.info(f"Analysing the sentiment of the data...")
+        logger.info("Analysing the sentiment of the data...")
 
         data[PREDICTED_SENTIMENT_COLUMN_NAME] = data[column_to_process].apply(
             self.get_sentiment
         )
 
-        logger.info(f"Data analysed successfully")
+        logger.info("Data analysed successfully")
 
         return data
 
@@ -109,13 +109,13 @@ class SentimentAnalyser:
             str | dict: The classification report of the sentiment analyser.
         """
         # TODO: Extend with visuals, metrics to a file,...
-        logger.info(f"Benchmarking the sentiment analyser...")
+        logger.info("Benchmarking the sentiment analyser...")
 
         # Get the classification report
         report = classification_report(
             data["sentiment"], data[PREDICTED_SENTIMENT_COLUMN_NAME]
         )
 
-        logger.info(f"Sentiment analyser benchmarked successfully")
+        logger.info("Sentiment analyser benchmarked successfully")
 
         return report

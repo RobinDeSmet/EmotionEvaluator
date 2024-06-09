@@ -1,9 +1,12 @@
+"""Evaulator API"""
+
 import logging
 import os
+from http import HTTPStatus
+
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
-from http import HTTPStatus
 from pydantic import BaseModel, Field
 
 from src.preprocessor import Preprocessor
@@ -22,17 +25,25 @@ sentiment_analyser = SentimentAnalyser(model=MODEL)
 
 
 class Review(BaseModel):
+    """Review object to be evaluated"""
+
     content: str = Field(..., max_length=512)
 
 
 @app.get("/")
 def read_root():
+    """Generic root endpoint"""
     return {"Hello": "World"}
 
 
 @app.post("/evaluate/")
 async def evaluate_text(review: Review):
-    logger.info(f"Evaulating the sentiment of the review...")
+    """Evaluate the sentiment of a given review.
+
+    Args:
+        review (Review): The review to be evaluated.
+    """
+    logger.info("Evaulating the sentiment of the review...")
 
     try:
         # Preprocess the text

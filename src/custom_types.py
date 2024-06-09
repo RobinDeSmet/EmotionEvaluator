@@ -1,7 +1,11 @@
+"""Custom types"""
+
 from enum import Enum
 
 
 class SentimentType(Enum):
+    """Sentiment types"""
+
     POSITIVE = 1
     NEGATIVE = -1
     NEUTRAL = 0
@@ -10,11 +14,10 @@ class SentimentType(Enum):
     def __str__(self):
         if self == SentimentType.POSITIVE:
             return "Positive"
-        elif self == SentimentType.NEGATIVE:
+        if self == SentimentType.NEGATIVE:
             return "Negative"
-        elif self == SentimentType.NEUTRAL:
+        if self == SentimentType.NEUTRAL:
             return "Neutral"
-        elif self == SentimentType.NOT_UNDERSTOOD:
+        if self == SentimentType.NOT_UNDERSTOOD:
             return "Not Understood"
-        else:
-            return super().__str__()
+        return super().__str__()

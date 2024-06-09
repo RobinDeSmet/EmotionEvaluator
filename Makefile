@@ -10,5 +10,8 @@ frontend:
 test:
 	poetry run pytest
 
+lint:
+	pylint src --rcfile .pylintrc
+
 setup-nltk:
 	poetry run python -c "import nltk; nltk.download('all');"

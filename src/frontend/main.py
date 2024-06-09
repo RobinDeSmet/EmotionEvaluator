@@ -1,9 +1,12 @@
+"""This module contains the Streamlit frontend for the Emotion Evaluator application."""
+
+from http import HTTPStatus
+
 import streamlit as st
 import requests
-import logging
-from http import HTTPStatus
+
 from src.custom_types import SentimentType
-from src.frontend.utils import url
+from src.frontend.utils import get_url
 from src.utils import configure_logging
 
 configure_logging()
@@ -24,20 +27,20 @@ button_clicked = st.button(
 )
 
 if button_clicked:
-    response = requests.post(url("/evaluate/"), json={"content": text})
+    response = requests.post(get_url("/evaluate/"), json={"content": text}, timeout=5)
 
     if response.status_code != HTTPStatus.OK:
         st.error(f"{response.json()['error']}")
     else:
-        sentiment = response.json()["sentiment"]
+        SENTIMENT = response.json()["sentiment"]
 
-        if sentiment == SentimentType.POSITIVE.value:
-            sentiment = "Positive 👍"
-        elif sentiment == SentimentType.NEGATIVE.value:
-            sentiment = "Negative 👎"
-        elif sentiment == SentimentType.NEUTRAL.value:
-            sentiment = "Neutral 😐"
+        if SENTIMENT == SentimentType.POSITIVE.value:
+            SENTIMENT = "Positive 👍"
+        elif SENTIMENT == SentimentType.NEGATIVE.value:
+            SENTIMENT = "Negative 👎"
+        elif SENTIMENT == SentimentType.NEUTRAL.value:
+            SENTIMENT = "Neutral 😐"
         else:
-            sentiment = "Not Understood 🤔"
+            SENTIMENT = "Not Understood 🤔"
 
-        st.write(f"The sentiment of the text is: {sentiment}")
+        st.write(f"The sentiment of the text is: {SENTIMENT}")
