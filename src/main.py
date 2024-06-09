@@ -1,32 +1,50 @@
 """Main entrypoint for the application"""
 
+import argparse
 import logging
-import sys
+import os
+
+from dotenv import load_dotenv
 from src.utils import configure_logging
 from src.preprocessor import Preprocessor
 from src.sentiment_analyser import SentimentAnalyser
 
+load_dotenv()
+DATA_PATH = os.getenv("DATA_PATH")
+MODEL = os.getenv("MODEL")
+
 if __name__ == "__main__":
+
+    # Parse command line arguments
+    parser = argparse.ArgumentParser(description="Sentiment Analysis CLI tool.")
+    parser.add_argument(
+        "--data", default=DATA_PATH, type=str, help="Path to the data file"
+    )
+    parser.add_argument(
+        "--output_dir",
+        default=f"src/results/{MODEL}",
+        type=str,
+        help="Path to the output file",
+    )
+    parser.add_argument(
+        "--model", default=MODEL, type=str, help="Which model to use from HuggingHub"
+    )
+
+    args = parser.parse_args()
 
     configure_logging()
     logger = logging.getLogger(__name__)
 
-    logger.info("Starting the app...")
-    logger.info("Arguments: %s", sys.argv)
+    logger.info("Starting the benchmark...")
+    logger.info(f"Arguments: {args}")
 
     preprocessor = Preprocessor()
-    analyser = SentimentAnalyser()
+    sentiment_analyser = SentimentAnalyser()
 
-    data = preprocessor.read_in_data()
+    data = preprocessor.read_in_data(data_path=args.data)
 
-    data = preprocessor.preprocess(data)
-
-    logger.info(f"Data: {data.head()}")
-
-    data = analyser.analyse(data)
-
-    report = analyser.benchmark(data)
+    report = sentiment_analyser.benchmark(data)
 
     logger.info(f"\n{report}")
 
-    logger.info("Closing the app")
+    logger.info("Benchmark completed successfully!")

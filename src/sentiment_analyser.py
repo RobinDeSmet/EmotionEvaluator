@@ -8,6 +8,7 @@ from sklearn.metrics import classification_report
 from transformers import pipeline
 
 from src.custom_types import SentimentType
+from src.preprocessor import Preprocessor
 
 load_dotenv()
 
@@ -23,11 +24,14 @@ class SentimentAnalyser:
     def __init__(
         self,
         model: str = "distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+        preprocessor: Preprocessor = Preprocessor(),
     ):
         logger.info("Initializing the sentiment analyser...")
 
         self.model = model
         self.pipeline = pipeline("sentiment-analysis", model=self.model)
+
+        self.preprocessor = preprocessor
 
         logger.info("Sentiment analyser initialized successfully")
 
@@ -97,10 +101,11 @@ class SentimentAnalyser:
 
         return data
 
-    def benchmark(self, data: pd.DataFrame) -> str | dict:
+    def benchmark(
+        self,
+        data: pd.DataFrame,
+    ) -> str | dict:
         """Benchmarks the sentiment analyser on the given dataset.
-           It excpects the dataframe to have a "sentiment" column with the ground truth,
-           and a "predicted_sentiment" column with the predicted sentiment.
 
         Args:
             data (pd.DataFrame): The dataset to benchmark on.
@@ -108,10 +113,16 @@ class SentimentAnalyser:
         Returns:
             str | dict: The classification report of the sentiment analyser.
         """
-        # TODO: Extend with visuals, metrics to a file,...
         logger.info("Benchmarking the sentiment analyser...")
 
-        # Get the classification report
+        logger.info("Preprocessing the data...")
+        data = self.preprocessor.preprocess(data)
+
+        logger.info("Analyzing the data...")
+        data = self.analyse(data)
+
+        logger.info("Generating the reports...")
+        # TODO: Extend with visuals, metrics to a file,...
         report = classification_report(
             data["sentiment"], data[PREDICTED_SENTIMENT_COLUMN_NAME]
         )
