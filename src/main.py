@@ -43,8 +43,6 @@ if __name__ == "__main__":
 
     data = preprocessor.read_in_data(data_path=args.data)
 
-    report = sentiment_analyser.benchmark(data, output_dir=args.output_dir)
-
-    logger.info(f"\n{report}")
+    sentiment_analyser.benchmark(data, output_dir=args.output_dir)
 
     logger.info("Benchmark completed successfully!")

@@ -3,6 +3,7 @@ FINDINGS
     This is because the model is able to generalize well and gets extra information out
     of the form the words are in.
   - Cleaning the data however improves the model's performance.
+  - Financial model will predict 'neutral' very often so the accuracy here is low!
 
 # BENCHMARK: distilbert/distilbert-base-uncased-finetuned-sst-2-english
 #               precision    recall  f1-score   support

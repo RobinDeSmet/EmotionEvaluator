@@ -66,16 +66,21 @@ class SentimentAnalyser:
         # Let the model generate a label for the sentiment
         sentiment = self.pipeline(text)
 
+        logger.debug(f"Sentiment from model: {sentiment}")
+
         # Convert to the custom SentimentType
-        if sentiment[0]["label"] == "POSITIVE":
+        predicted_sentiment = sentiment[0]["label"].upper()
+        if predicted_sentiment == "POSITIVE":
             sentiment = SentimentType.POSITIVE.value
             sentiment_log = SentimentType.POSITIVE
-        elif sentiment[0]["label"] == "NEGATIVE":
+        elif predicted_sentiment == "NEGATIVE":
             sentiment = SentimentType.NEGATIVE.value
             sentiment_log = SentimentType.NEGATIVE
-        elif sentiment[0]["label"] == "NEUTRAL":
-            sentiment = SentimentType.NEUTRAL.value
-            sentiment_log = SentimentType.NEUTRAL
+        elif (
+            predicted_sentiment == "NEUTRAL"
+        ):  # For this case neutral will be seen as positive
+            sentiment = SentimentType.POSITIVE.value
+            sentiment_log = SentimentType.POSITIVE
         else:
             sentiment = SentimentType.NOT_UNDERSTOOD.value
             sentiment_log = SentimentType.NOT_UNDERSTOOD
@@ -110,14 +115,11 @@ class SentimentAnalyser:
         self,
         data: pd.DataFrame,
         output_dir: str = "src/results",
-    ) -> str | dict:
+    ):
         """Benchmarks the sentiment analyser on the given dataset.
 
         Args:
             data (pd.DataFrame): The dataset to benchmark on.
-
-        Returns:
-            str | dict: The classification report of the sentiment analyser.
         """
         logger.info("Benchmarking the sentiment analyser...")
 
@@ -178,5 +180,3 @@ class SentimentAnalyser:
         plt.savefig(os.path.join(output_dir, "confusion_matrix.png"))
 
         logger.info("Sentiment analyser benchmarked successfully")
-
-        return report
