@@ -7,9 +7,9 @@ class SentimentType(Enum):
     """Sentiment types"""
 
     POSITIVE = 1
-    NEGATIVE = -1
-    NEUTRAL = 0
-    NOT_UNDERSTOOD = 2
+    NEGATIVE = 0
+    NEUTRAL = 2
+    NOT_UNDERSTOOD = 3
 
     def __str__(self):
         if self == SentimentType.POSITIVE:

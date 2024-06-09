@@ -1,8 +1,8 @@
-Generated in 0:00:21.059648s
+Generated in 0:00:17.783978s
 
               precision    recall  f1-score   support
 
-          -1       0.92      0.76      0.83        58
+           0       0.92      0.76      0.83        58
            1       0.73      0.90      0.81        42
 
     accuracy                           0.82       100

@@ -30,6 +30,13 @@ if __name__ == "__main__":
         "--model", default=MODEL, type=str, help="Which model to use from HuggingHub"
     )
 
+    parser.add_argument(
+        "--sequence_length",
+        default=512,
+        type=int,
+        help="Max sequence length for the model",
+    )
+
     args = parser.parse_args()
 
     configure_logging()
@@ -38,8 +45,8 @@ if __name__ == "__main__":
     logger.info("Starting the benchmark...")
     logger.info(f"Arguments: {args}")
 
-    preprocessor = Preprocessor()
-    sentiment_analyser = SentimentAnalyser(model=args.model)
+    preprocessor = Preprocessor(sequence_length=int(args.sequence_length))
+    sentiment_analyser = SentimentAnalyser(model=args.model, preprocessor=preprocessor)
 
     data = preprocessor.read_in_data(data_path=args.data)
 

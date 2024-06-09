@@ -64,7 +64,7 @@ class SentimentAnalyser:
         """
         logger.info(f"Analysing sentiment of the text: {text}")
 
-        # Let the model generate a label for the sentiment
+        # Calculate the sentiment of the text
         sentiment = self.pipeline(text)
 
         logger.info(f"Sentiment from model: {sentiment}")
@@ -81,25 +81,24 @@ class SentimentAnalyser:
             logger.info(f"Resulting sentiment: {sentiment_log}")
             return sentiment
 
-        # Models who use
+        # Models who use descriptive labels as sentiment labels
         predicted_sentiment = sentiment[0]["label"].upper()
-        if predicted_sentiment == "POSITIVE" or predicted_sentiment == "LABEL_1":
+        if "POS" in predicted_sentiment or predicted_sentiment == "LABEL_1":
             sentiment = SentimentType.POSITIVE.value
             sentiment_log = SentimentType.POSITIVE
-        elif predicted_sentiment == "NEGATIVE" or predicted_sentiment == "LABEL_0":
+        elif "NEG" in predicted_sentiment or predicted_sentiment == "LABEL_0":
             sentiment = SentimentType.NEGATIVE.value
             sentiment_log = SentimentType.NEGATIVE
         elif (
-            predicted_sentiment == "NEUTRAL"
+            "NEU" in predicted_sentiment
         ):  # For this case neutral will be seen as positive
-            sentiment = SentimentType.NEGATIVE.value
-            sentiment_log = SentimentType.NEGATIVE
+            sentiment = SentimentType.POSITIVE.value
+            sentiment_log = SentimentType.POSITIVE
         else:
             sentiment = SentimentType.NOT_UNDERSTOOD.value
             sentiment_log = SentimentType.NOT_UNDERSTOOD
 
         logger.info(f"Resulting sentiment: {sentiment_log}")
-
         return sentiment
 
     def analyse(
@@ -169,7 +168,7 @@ class SentimentAnalyser:
         # Mapping numeric labels to string labels
         label_mapping = {
             1: f"{SentimentType.POSITIVE}",
-            -1: f"{SentimentType.NEGATIVE}",
+            0: f"{SentimentType.NEGATIVE}",
         }
         data["sentiment"] = data["sentiment"].map(label_mapping)
         data["predicted_sentiment"] = data["predicted_sentiment"].map(label_mapping)

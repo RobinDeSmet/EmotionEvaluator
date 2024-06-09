@@ -20,8 +20,11 @@ MAX_SEQUENCE_LENGTH = int(os.getenv("MAX_SEQUENCE_LENGTH"))
 class Preprocessor:
     """This class preprocess the review dataset"""
 
-    def __init__(self):
+    def __init__(self, sequence_length: int = MAX_SEQUENCE_LENGTH):
         logger.info("Initializing the preprocessor...")
+
+        self.sequence_length = sequence_length
+
         logger.info("Preprocessor initialized successfully")
 
     def read_in_data(self, data_path: str = DATA_PATH) -> pd.DataFrame:
@@ -40,7 +43,7 @@ class Preprocessor:
 
         # Transform dataframe to the desired format:
         #   - Combine all the columns, right before the sentiment column into a single review column.
-        #   - Create a sentiment column with 1 for positive and 0 for negative (No neutral).
+        #   - Create a sentiment column with 1 for positive and 0 for negative (No neutral in this dataset).
         reviews = []
         sentiments = []
         for _, row in df.iterrows():
@@ -99,7 +102,8 @@ class Preprocessor:
         text = re.sub(r"\s+", " ", text).strip()
 
         # Limit the sequence length
-        text = text[:MAX_SEQUENCE_LENGTH]
+        logger.error(f"Sequence length: {self.sequence_length}")
+        text = text[: self.sequence_length]
 
         logger.info(f"Text preprocessed successfully: {text}")
 
