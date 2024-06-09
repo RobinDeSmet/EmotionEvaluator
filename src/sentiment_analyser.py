@@ -67,21 +67,33 @@ class SentimentAnalyser:
         # Let the model generate a label for the sentiment
         sentiment = self.pipeline(text)
 
-        logger.debug(f"Sentiment from model: {sentiment}")
+        logger.info(f"Sentiment from model: {sentiment}")
 
-        # Convert to the custom SentimentType
+        # Models who use stars as sentiment labels
+        if "STAR" in sentiment[0]["label"].upper():
+            amount_of_stars = int(sentiment[0]["label"].split(" ")[0])
+            if amount_of_stars > 2:
+                sentiment = SentimentType.POSITIVE.value
+                sentiment_log = SentimentType.POSITIVE
+            else:
+                sentiment = SentimentType.NEGATIVE.value
+                sentiment_log = SentimentType.NEGATIVE
+            logger.info(f"Resulting sentiment: {sentiment_log}")
+            return sentiment
+
+        # Models who use
         predicted_sentiment = sentiment[0]["label"].upper()
-        if predicted_sentiment == "POSITIVE":
+        if predicted_sentiment == "POSITIVE" or predicted_sentiment == "LABEL_1":
             sentiment = SentimentType.POSITIVE.value
             sentiment_log = SentimentType.POSITIVE
-        elif predicted_sentiment == "NEGATIVE":
+        elif predicted_sentiment == "NEGATIVE" or predicted_sentiment == "LABEL_0":
             sentiment = SentimentType.NEGATIVE.value
             sentiment_log = SentimentType.NEGATIVE
         elif (
             predicted_sentiment == "NEUTRAL"
         ):  # For this case neutral will be seen as positive
-            sentiment = SentimentType.POSITIVE.value
-            sentiment_log = SentimentType.POSITIVE
+            sentiment = SentimentType.NEGATIVE.value
+            sentiment_log = SentimentType.NEGATIVE
         else:
             sentiment = SentimentType.NOT_UNDERSTOOD.value
             sentiment_log = SentimentType.NOT_UNDERSTOOD

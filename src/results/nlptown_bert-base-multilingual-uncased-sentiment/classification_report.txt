@@ -1,0 +1,10 @@
+Generated in 0:00:21.059648s
+
+              precision    recall  f1-score   support
+
+          -1       0.92      0.76      0.83        58
+           1       0.73      0.90      0.81        42
+
+    accuracy                           0.82       100
+   macro avg       0.82      0.83      0.82       100
+weighted avg       0.84      0.82      0.82       100
