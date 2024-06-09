@@ -2,10 +2,14 @@
 
 import os
 import logging
+
+import numpy as np
 import pandas as pd
 from dotenv import load_dotenv
-from sklearn.metrics import classification_report
+from sklearn.metrics import classification_report, confusion_matrix
 from transformers import pipeline
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 from src.custom_types import SentimentType
 from src.preprocessor import Preprocessor
@@ -122,7 +126,7 @@ class SentimentAnalyser:
         output_dir = os.path.join(output_dir, model_dir)
 
         # Check if the output directory exists
-        if not os.path.exists(os.path.join(output_dir, self.model)):
+        if not os.path.exists(output_dir):
             os.makedirs(output_dir)
 
         logger.info("Preprocessing the data...")
@@ -132,7 +136,6 @@ class SentimentAnalyser:
         data = self.analyse(data)
 
         logger.info("Generating the classification report...")
-        # TODO: Extend with visuals, metrics to a file,...
         report = classification_report(
             data["sentiment"], data[PREDICTED_SENTIMENT_COLUMN_NAME]
         )
@@ -140,6 +143,39 @@ class SentimentAnalyser:
         # Save the classification report to a file
         with open(f"{output_dir}/classification_report.txt", "w") as f:
             f.write(report)
+
+        logger.info("Generating the confusion matrix...")
+
+        # Mapping numeric labels to string labels
+        label_mapping = {
+            1: f"{SentimentType.POSITIVE}",
+            -1: f"{SentimentType.NEGATIVE}",
+        }
+        data["sentiment"] = data["sentiment"].map(label_mapping)
+        data["predicted_sentiment"] = data["predicted_sentiment"].map(label_mapping)
+
+        # Generate the confusion matrix
+        cf_matrix = confusion_matrix(
+            data["sentiment"],
+            data[PREDICTED_SENTIMENT_COLUMN_NAME],
+        )
+
+        # Create a heatmap of the confusion matrix
+        plt.figure(figsize=(10, 7))
+        sns.heatmap(
+            cf_matrix,
+            annot=True,
+            fmt="d",
+            cmap="Blues",
+            xticklabels=np.unique(data[PREDICTED_SENTIMENT_COLUMN_NAME]),
+            yticklabels=np.unique(data["sentiment"]),
+        )
+        plt.xlabel("Predicted")
+        plt.ylabel("Actual")
+        plt.title("Confusion Matrix")
+
+        # Save the confusion matrix to a file
+        plt.savefig(os.path.join(output_dir, "confusion_matrix.png"))
 
         logger.info("Sentiment analyser benchmarked successfully")
 
