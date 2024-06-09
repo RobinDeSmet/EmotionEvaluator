@@ -2,6 +2,7 @@
 
 import os
 import logging
+from datetime import datetime
 
 import numpy as np
 import pandas as pd
@@ -135,7 +136,9 @@ class SentimentAnalyser:
         data = self.preprocessor.preprocess(data)
 
         logger.info("Analyzing the data...")
+        start = datetime.now()
         data = self.analyse(data)
+        end = datetime.now()
 
         logger.info("Generating the classification report...")
         report = classification_report(
@@ -143,7 +146,10 @@ class SentimentAnalyser:
         )
 
         # Save the classification report to a file
-        with open(f"{output_dir}/classification_report.txt", "w") as f:
+        with open(
+            f"{output_dir}/classification_report.txt", "w", encoding="utf-8"
+        ) as f:
+            f.write(f"Generated in {end - start}s\n\n")
             f.write(report)
 
         logger.info("Generating the confusion matrix...")
