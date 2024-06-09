@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 
 DATA_PATH = os.getenv("DATA_PATH")
 PREDICTED_SENTIMENT_COLUMN_NAME = os.getenv("PREDICTED_SENTIMENT_COLUMN_NAME")
+MODEL = os.getenv("MODEL")
 
 
 class SentimentAnalyser:
@@ -23,7 +24,7 @@ class SentimentAnalyser:
 
     def __init__(
         self,
-        model: str = "distilbert/distilbert-base-uncased-finetuned-sst-2-english",
+        model: str = MODEL,
         preprocessor: Preprocessor = Preprocessor(),
     ):
         logger.info("Initializing the sentiment analyser...")
@@ -56,7 +57,7 @@ class SentimentAnalyser:
         Returns:
             str: The sentiment of the text (either positive or negative).
         """
-        logger.info(f"Analysing sentiment of the text: {text}...")
+        logger.info(f"Analysing sentiment of the text: {text}")
 
         # Let the model generate a label for the sentiment
         sentiment = self.pipeline(text)
@@ -104,6 +105,7 @@ class SentimentAnalyser:
     def benchmark(
         self,
         data: pd.DataFrame,
+        output_dir: str = "src/results",
     ) -> str | dict:
         """Benchmarks the sentiment analyser on the given dataset.
 
@@ -115,17 +117,29 @@ class SentimentAnalyser:
         """
         logger.info("Benchmarking the sentiment analyser...")
 
+        logger.info("Setting up the output directory...")
+        model_dir = self.model.replace("/", "_")
+        output_dir = os.path.join(output_dir, model_dir)
+
+        # Check if the output directory exists
+        if not os.path.exists(os.path.join(output_dir, self.model)):
+            os.makedirs(output_dir)
+
         logger.info("Preprocessing the data...")
         data = self.preprocessor.preprocess(data)
 
         logger.info("Analyzing the data...")
         data = self.analyse(data)
 
-        logger.info("Generating the reports...")
+        logger.info("Generating the classification report...")
         # TODO: Extend with visuals, metrics to a file,...
         report = classification_report(
             data["sentiment"], data[PREDICTED_SENTIMENT_COLUMN_NAME]
         )
+
+        # Save the classification report to a file
+        with open(f"{output_dir}/classification_report.txt", "w") as f:
+            f.write(report)
 
         logger.info("Sentiment analyser benchmarked successfully")
 
