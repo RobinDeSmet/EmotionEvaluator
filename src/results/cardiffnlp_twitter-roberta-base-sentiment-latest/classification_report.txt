@@ -1,16 +1,18 @@
-[Amount of samples: 100] Generated in 0:00:17.331477s
+[Amount of samples: 100] Generated in 0:00:17.676793s
 
               precision    recall  f1-score   support
 
-           0       0.55      0.83      0.66        58
-           1       0.17      0.05      0.07        42
+           0       0.59      1.00      0.74        58
+           1       1.00      0.05      0.09        42
 
-    accuracy                           0.50       100
-   macro avg       0.36      0.44      0.37       100
-weighted avg       0.39      0.50      0.41       100
+    accuracy                           0.60       100
+   macro avg       0.80      0.52      0.42       100
+weighted avg       0.76      0.60      0.47       100
 
 
 Misclassified reviews:
+
+[Predicted: 0, Truth: 1] Review: One of the other reviewers has mentioned that after watching just 1 Oz episode you'll be hooked. They are right, as this is exactly what happened with me.The first thing that struck me about Oz was its brutality and unflinching scenes of violence, which set in right from the word GO. Trust me, this is not a show for the faint hearted or timid. This show pulls no punches with regards to drugs, sex or violence. Its is hardcore, in the classic use of the word.It is called OZ as that is the nickname given to th
 
 [Predicted: 0, Truth: 1] Review: A wonderful little production. The filming technique is very unassuming- very old-time-BBC fashion and gives a comforting, and sometimes discomforting, sense of realism to the entire piece. The actors are extremely well chosen- Michael Sheen not only "has got all the polari" but he has all the voices down pat too! You can truly see the seamless editing guided by the references to Williams' diary entries, not only is it well worth the watching but it is a terrificly written and performed piece. A masterful p
 
@@ -24,11 +26,11 @@ Misclassified reviews:
 
 [Predicted: 0, Truth: 1] Review: If you like original gut wrenching laughter you will like this movie. If you are young or old then you will love this movie, hell even my mom liked it.Great Camp!!!
 
-[Predicted: 1, Truth: 0] Review: So im not a big fan of Boll's work but then again not many are. I enjoyed his movie Postal (maybe im the only one). Boll apparently bought the rights to use Far Cry long ago even before the game itself was even finsished. People who have enjoyed killing mercs and infiltrating secret research labs located on a tropical island should be warned, that this is not Far Cry... This is something Mr Boll have schemed together along with his legion of schmucks.. Feeling loneley on the set Mr Boll invites three of his
-
 [Predicted: 0, Truth: 1] Review: This a fantastic movie of three prisoners who become famous. One of the actors is george clooney and I'm not a fan but this roll is not bad. Another good thing about the movie is the soundtrack (The man of constant sorrow). I recommand this movie to everybody. Greetings Bart
 
 [Predicted: 0, Truth: 1] Review: Some films just simply should not be remade. This is one of them. In and of itself it is not a bad film. But it fails to capture the flavor and the terror of the 1963 film of the same title. Liam Neeson was excellent as he always is, and most of the cast holds up, with the exception of Owen Wilson, who just did not bring the right feel to the character of Luke. But the major fault with this version is that it strayed too far from the Shirley Jackson story in it's attempts to be grandiose and lost some of th
+
+[Predicted: 0, Truth: 1] Review: I remember this film,it was the first film i had watched at the cinema the picture was dark in places i was very nervous it was back in 74/75 my Dad took me my brother & sister to Newbury cinema in Newbury Berkshire England. I recall the tigers and the lots of snow in the film also the appearance of Grizzly Adams actor Dan Haggery i think one of the tigers gets shot and dies. If anyone knows where to find this on DVD etc please let me know.The cinema now has been turned in a fitness club which is a very big
 
 [Predicted: 0, Truth: 1] Review: After the success of Die Hard and it's sequels it's no surprise really that in the 1990s, a glut of 'Die Hard on a .....' movies cashed in on the wrong guy, wrong place, wrong time concept. That is what they did with Cliffhanger, Die Hard on a mountain just in time to rescue Sly 'Stop or My Mom Will Shoot' Stallone's career.Cliffhanger is one big nit-pickers dream, especially to those who are expert at mountain climbing, base-jumping, aviation, facial expressions, acting skills. All in all it's full of excu
 
@@ -42,13 +44,7 @@ Misclassified reviews:
 
 [Predicted: 0, Truth: 1] Review: Taut and organically gripping, Edward Dmytryk's Crossfire is a distinctive suspense thriller, an unlikely "message" movie using the look and devices of the noir cycle.Bivouacked in Washington, DC, a company of soldiers cope with their restlessness by hanging out in bars. Three of them end up at a stranger's apartment where Robert Ryan, drunk and belligerent, beats their host (Sam Levene) to death because he happens to be Jewish. Police detective Robert Young investigates with the help of Robert Mitchum, who
 
-[Predicted: 0, Truth: 1] Review: "Ardh Satya" is one of the finest film ever made in Indian Cinema. Directed by the great director Govind Nihalani, this one is the most successful Hard Hitting Parallel Cinema which also turned out to be a Commercial Success. Even today, Ardh Satya is an inspiration for all leading directors of India.The film tells the Real-life Scenario of Mumbai Police of the 70s. Unlike any Police of other cities in India, Mumbai Police encompasses a Different system altogether. Govind Nihalani creates a very practical O
-
 [Predicted: 0, Truth: 1] Review: One of the most significant quotes from the entire film is pronounced halfway through by the protagonist, the mafia middle-man Titta Di Girolamo, a physically non-descript, middle-aged man originally from Salerno in Southern Italy. When we're introduced to him at the start of the film, he's been living a non-life in an elegant but sterile hotel in the Italian-speaking Canton of Switzerland for the last ten years, conducting a business we are only gradually introduced to. While this pivotal yet apparently un
-
-[Predicted: 1, Truth: 0] Review: The plot is about the death of little children. Hopper is the one who has to investigate the killings. During the movie it appears that he has some troubles with his daughter. In the end the serial killer get caught. That's it. But before you find out who dunnit, you have to see some terrible acting by all of the actors. It is unbelievable how bad these actors are, including Hopper. I could go on like this but that to much of a waste of my time. Just don't watch the movie. I've warned you.
-
-[Predicted: 1, Truth: 0] Review: Ever watched a movie that lost the plot? Well, this didn't even really have one to begin with.Where to begin? The achingly tedious scenes of our heroine sitting around the house with actually no sense of menace or even foreboding created even during the apparently constant thunderstorms (that are strangely never actually heard in the house-great double glazing)? The house that is apparently only a few miles from a town yet is several hours walk away(?) or the third girl who serves no purpose to the plot exc
 
 [Predicted: 0, Truth: 1] Review: Okay, so this series kind of takes the route of 'here we go again!' Week in, week out David Morse's character helps out his ride who is in a bit of a pickle - but what's wrong with that!? David Morse is one of the greatest character actors out there, and certainly the coolest, and to have him in a series created by David Koepp - a great writer - is heaven!!Due to the lack of love for this show by many, I can't see it going to a season series - but you never know? The amount of rubbish that has made it beyon
 
@@ -68,8 +64,6 @@ Misclassified reviews:
 
 [Predicted: 0, Truth: 1] Review: I cannot believe I enjoyed this as much as I did. The anthology stories were better than par, but the linking story and its surprise ending hooked me. Alot of familiar faces will keep you asking yourself "where I have I seen them before?" Forget the running time listed on New Line's tape, this ain't no 103 minutes, according to my VCR timer and IMDB. Space Maggot douses the campfire in his own special way and hikes this an 8.
 
-[Predicted: 1, Truth: 0] Review: I laughed all the way through this rotten movie. It's so unbelievable. A woman leaves her husband after many years of marriage, has a breakdown in front of a real estate office. What happens? The office manager comes outside and offers her a job!!! Hilarious! Next thing you know the two women are going at it. Yep, they're lesbians! Nothing rings true in this "Lifetime for Women with nothing better to do" movie. Clunky dialogue like "I don't want to spend the rest of my life feeling like I had a chance to be
-
 [Predicted: 0, Truth: 1] Review: NO SPOILERS!!After Hitchcock's successful first American film, Rebecca based upon Daphne DuMarier's lush novel of gothic romance and intrigue, he returned to some of the more familiar themes of his early British period - mistaken identity and espionage. As the U.S. settled into World War II and the large scale 'war effort' of civilians building planes, weaponry and other necessary militia, the booming film entertainment business began turning out paranoid and often jingoistic thrillers with war time themes.
 
 [Predicted: 0, Truth: 1] Review: I just watched The Dresser this evening, having only seen it once before, about a dozen years ago.It's not a "big" movie, and doesn't try to make a big splash, but my God, the brilliance of the two leads leaves me just about speechless. Albert Finney and Tom Courtenay are nothing less than amazing in this movie.The Dresser is the story of Sir, an aging Shakespearean actor (Finney), and his dresser Norman (Courtenay), sort of a valet, putting on a production of King Lear during the blitz of London in World W
@@ -77,10 +71,6 @@ Misclassified reviews:
 [Predicted: 0, Truth: 1] Review: So let's begin!)))The movie itself is as original as Cronenberg's movies would usually appear...My intention to see it was certainly JJL being one of my favourite actresses. She is as lovely as usual, this cutie!I would not say it was my favourite movie of hers. Still it's quite interesting and entertaining to follow. The rest of the cast is not extremely impressive but it is not some kind of a miscast star array. ;)Recommend with confidence!))))
 
 [Predicted: 0, Truth: 1] Review: DON'T TORTURE A DUCKLING is one of Fulci's earlier (and honestly, in terms of story-line, better...) films - and although not the typical "bloodbath" that Fulci is known for - this is still a very unique and enjoyable film.The story surrounds a small town where a series of child murders are occurring. Some of the colorful characters involved in the investigations - either as suspects, or those "helping" the investigation (or in some cases both) - include the towns police force, a small-time reporter, a beau
-
-[Predicted: 1, Truth: 0] Review: Busty beauty Stacie Randall plays PVC clad, bad-ass bitch Alexandra, the faithful acolyte of Faust, an evil entity trapped in hell. Determined to free her master, the malevolent minx breaks into a warehouse to steal a magical gem vital to her success; but whilst conducting a satanic ritual to summon Faust, the silly mare accidentally enters the pentagram she has drawn on the floor, which results in the loss of the gem and the release of two diminutive, troll-like creatures called Lite and Dark.Now Alexandra
-
-[Predicted: 1, Truth: 0] Review: Honestly - this short film sucks. the dummy used in the necro scene is pretty well made but still phony enough looking to ruin the viewing experience. the Unearthed DVD is crisp and clear and I haven't made up my mind if this helps or hinders it. If the film was a little grainy it might have added some "creepiness factor" to what was going on. I have no idea why this film has so much hype surrounding it other than the subject matter - but to be honest the necrophilia scenes in films like NEKROMANTIK and VIS
 
 [Predicted: 0, Truth: 1] Review: I thought that Mukhsin has been wonderfully written. Its not just about entertainment. There's tonnes of subtle messages that i think Yasmin was trying to bring across. And yes, it might be confusing to some of you(especially if you didn't watch Sepet and/or Gubra for 76 times).I bet u noticed how they use characters from the two movies before right? Its really ironic how the characters relate. Like the bossy neighbour is that prostitute from Gubra. And the chick at the snooker pad turns out to be the relig
 
@@ -94,21 +84,11 @@ Misclassified reviews:
 
 [Predicted: 0, Truth: 1] Review: Stephen Hawkings is a genius. He is the king of geniuses. Watching this movie makes me feel dumb. But it's a great movie. Not highly entertaining, but very very intriguing. The movie centers around wheelchair bound Stephen Hawkings, a man who makes Einstein look average, and his theories and scientific discoveries about the universe, time, the galaxy, and black holes. Everyone at sometime or another during a really intense high comes to a moment when they think they'v got the universe and the cosmos figured
 
-[Predicted: 1, Truth: 0] Review: The story is about a psychic woman, Tory, who returns to her hometown and begins reliving her traumatic childhood past (the death of her childhood friend and abusive father). Tory discovers that her friend was just the first in a string of murders that are still occurring. Can her psychic powers help solve the crimes and stop the continuing murders? You really don't need to find out because, Oh My God! This was so so so so bad! I know all the Nora Roberts fans will flock to this movie and give it tons of 10
-
-[Predicted: 1, Truth: 0] Review: Oh noes one of these attack of the Japanese ghost girl movies... i don't even remember how many i've seen. maybe it sells... but not to me. not scary at all. the japanese horror movies are have been very similar since the first one of these... also the pulling of the kid. i have seen that pulled under scene so many times in so many horror movies. cellphone scene is also nothing new... the dramaticness of the guy getting hit by a train kinda sucked... i mean it lacked all dramaticness... OK this is for kids 
-
 [Predicted: 0, Truth: 1] Review: "Down Periscope" has been in our library since it first arrived in VHS. Since then, we have acquired the DVD and a digital from Cinema Now.It is a quirky flick that does not go militarily overboard as either pro or con. It is first and foremost a comedy and as a vehicle for the main characters, I am quite surprised that a sequel has never been offered.The movie has gained a following that borders on a cult obsession, even among the very young. I became aware of this while visiting the USS Drum in Mobile, Al
-
-[Predicted: 1, Truth: 0] Review: If you came here, it's because you've already seen this film and were curious what others had to say about it.I feel for you, I *really* do. And I profusely apologize as a Canadian (because that's what we do) that this film ever had to cross your eyes, if only for a moment. I hear there is no cure for the retinal bleeding reported out of every dozen cases.I, like everyone else, rented this movie believing it to be some stupid B-movie ripoff of Blade. I thought, "sure I could use a good laugh at a stupid mov
 
 [Predicted: 0, Truth: 1] Review: Deanna Durbin, Nan Grey and Barbara Read are "Three Smart Girls" in this Universal film from 1936, which introduces Deanna Durbin to film audiences. It also stars Ray Milland, Mischa Auer, Charles Winninger, John King, Binnie Barnes and Alice Brady. It's a sweet story about three young women, now living in Switzerland with their divorced mother, who hear their father (Winninger) is marrying again. Not having seen him in 10 years and knowing their mother still loves him, they board a ship to America, with th
 
 [Predicted: 0, Truth: 1] Review: If anyone is wondering why no one makes movies like they used to, with conversation, character and a simple theme of friendship struggling to evolve into something new, better and different, those folks need to take in this film and see top notch writing, directing, and acting that melds into a wonderful evening of observation on how things used to be in Italy and England. Other days, other times funneled into a terrific comedy of entertainment, made in 1992 with Alfred Molina, Joan Plowright, Polly Walker,
 
 [Predicted: 0, Truth: 1] Review: Daniel Day-Lewis is the most versatile actor alive. English aristocratic snob in A Room With a View, passionate Irish thief in In the Name of the Father, an impudent, violent butcher in Gangs of New York (in a performance ten times stronger than Adrian Brody's in the Pianist) and as the outrageous Cristy Brown with cerebral palsy in My Left Foot (just to name a few). His roles all influence eachother, but each is seperate, and utterly unique. He changes completely, with each character he takes on. And I'm b
-
-[Predicted: 1, Truth: 0] Review: This IS the worst movie I have ever seen, as well as, the worst that I will probably EVER see. I see no need to rehash what all the others have said previously, just be forewarned...This IS NOT one of those bad movies you think you want to watch because you want to be able to make fun of it, its just plain BAD BAD BAD BAD BAD.This movie is the equivalent to having a "pet rock" as your friend. You wait and wait and wait and wait and wait and wait and wait and wait for something to happen. Unfortunately, it n
-
-[Predicted: 0, Truth: 1] Review: I have been a Mario fan for as long as I can remember, I have very fond memories of playing Super Mario World as a kid, this game has brought back many of those memories while adding something new. Super Mario Galaxy is the latest installment in the amazing Mario franchise. There is much very different about this game from any other Mario before it, while still keeping intact the greatest elements of Mario, the first noticeable difference is that the story takes place in space.The story begins much like any
 

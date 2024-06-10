@@ -96,7 +96,7 @@ class SentimentAnalyser:
             sentiment_log = SentimentType.NEGATIVE
         elif (
             "NEU" in predicted_sentiment
-        ):  # For this case neutral will be seen as positive
+        ):  # For this case neutral will be seen as positive because we only have 2 labels
             sentiment = SentimentType.POSITIVE.value
             sentiment_log = SentimentType.POSITIVE
         else:
@@ -155,6 +155,10 @@ class SentimentAnalyser:
         start = datetime.now()
         data = self.analyse(data)
         end = datetime.now()
+
+        logger.info("Writing the results to a csv file...")
+
+        data.to_csv(os.path.join(output_dir, "results.csv"), index=False)
 
         logger.info("Generating the classification report...")
 
