@@ -40,6 +40,7 @@ class SentimentAnalyser:
         logger.info("Initializing the sentiment analyser...")
 
         self.model = model
+
         self.pipeline = pipeline("sentiment-analysis", model=self.model)
 
         self.preprocessor = preprocessor
@@ -55,6 +56,7 @@ class SentimentAnalyser:
         logger.info(f"Setting the model to: {model}...")
 
         self.model = model
+
         self.pipeline = pipeline("sentiment-analysis", model=self.model)
 
         logger.info("Model set successfully")
@@ -104,6 +106,7 @@ class SentimentAnalyser:
             sentiment_log = SentimentType.NOT_UNDERSTOOD
 
         logger.info(f"Resulting sentiment: {sentiment_log}")
+
         return sentiment
 
     def analyse(
@@ -141,17 +144,19 @@ class SentimentAnalyser:
         logger.info("Benchmarking the sentiment analyser...")
 
         logger.info("Setting up the output directory...")
-        model_dir = self.model.replace("/", "_")
-        output_dir = os.path.join(output_dir, model_dir)
+
+        output_dir = os.path.join(output_dir, self.model.replace("/", "_"))
 
         # Check if the output directory exists
         if not os.path.exists(output_dir):
             os.makedirs(output_dir)
 
         logger.info("Preprocessing the data...")
+
         data = self.preprocessor.preprocess(data)
 
         logger.info("Analyzing the data...")
+
         start = datetime.now()
         data = self.analyse(data)
         end = datetime.now()
@@ -162,6 +167,7 @@ class SentimentAnalyser:
 
         logger.info("Generating the classification report...")
 
+        # Generate the classification report
         report = classification_report(
             data["sentiment"], data[PREDICTED_SENTIMENT_COLUMN_NAME]
         )
@@ -175,6 +181,7 @@ class SentimentAnalyser:
 
         logger.info("Writing misclassified reviews to a file...")
 
+        # Get the misclassified reviews
         misclassified = data[data["sentiment"] != data[PREDICTED_SENTIMENT_COLUMN_NAME]]
 
         # Save the misclassified reviews to a file
@@ -182,7 +189,7 @@ class SentimentAnalyser:
             f"{output_dir}/classification_report.txt", "a", encoding="utf-8"
         ) as f:
             f.write("\n\nMisclassified reviews:\n\n")
-            for index, row in misclassified.iterrows():
+            for _, row in misclassified.iterrows():
                 f.write(
                     f"[Predicted: {row[PREDICTED_SENTIMENT_COLUMN_NAME]}, Truth: {row['sentiment']}] Review: {row['review']}\n\n"
                 )

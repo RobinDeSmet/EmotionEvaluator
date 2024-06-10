@@ -107,7 +107,6 @@ class Preprocessor:
 
         logger.info(f"Text preprocessed successfully: {text}")
 
-        # return processed_text
         return text
 
     def preprocess(
