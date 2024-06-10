@@ -18,23 +18,26 @@ if __name__ == "__main__":
     # Parse command line arguments
     parser = argparse.ArgumentParser(description="Sentiment Analysis CLI tool.")
     parser.add_argument(
-        "--data", default=DATA_PATH, type=str, help="Path to the data file"
+        "--data",
+        default=DATA_PATH,
+        type=str,
+        help="Path to the CSV file that holds the dataset",
     )
     parser.add_argument(
         "--output_dir",
         default="src/results",
         type=str,
-        help="Path to the output file",
+        help="Path to the output directory, where the results will be saved",
     )
     parser.add_argument(
-        "--model", default=MODEL, type=str, help="Which model to use from HuggingHub"
+        "--model", default=MODEL, type=str, help="Specifies the model to use"
     )
 
     parser.add_argument(
         "--sequence_length",
         default=512,
         type=int,
-        help="Max sequence length for the model",
+        help="Max input sequence length for the model",
     )
 
     args = parser.parse_args()
