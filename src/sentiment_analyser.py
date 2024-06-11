@@ -72,38 +72,46 @@ class SentimentAnalyser:
         logger.info(f"Analysing sentiment of the text: {text}")
 
         # Calculate the sentiment of the text
+        pos_score = 0
+        neg_score = 0
+
         sentiment = self.pipeline(text)
 
         logger.info(f"Sentiment from model: {sentiment}")
 
-        # Models who use stars as sentiment labels
         if "STAR" in sentiment[0]["label"].upper():
-            amount_of_stars = int(sentiment[0]["label"].split(" ")[0])
-            if amount_of_stars > 2:
-                sentiment = SentimentType.POSITIVE.value
-                sentiment_log = SentimentType.POSITIVE
-            else:
-                sentiment = SentimentType.NEGATIVE.value
-                sentiment_log = SentimentType.NEGATIVE
-            logger.info(f"Resulting sentiment: {sentiment_log}")
-            return sentiment
+            # Models who use 5 star system as sentiment labels
+            for prediction in sentiment:
+                predicted_sentiment = int(prediction["label"].split(" ")[0])
+                predicted_score = prediction["score"]
 
-        # Models who use descriptive labels as sentiment labels
-        predicted_sentiment = sentiment[0]["label"].upper()
-        if "POS" in predicted_sentiment or predicted_sentiment == "LABEL_1":
-            sentiment = SentimentType.POSITIVE.value
-            sentiment_log = SentimentType.POSITIVE
-        elif "NEG" in predicted_sentiment or predicted_sentiment == "LABEL_0":
-            sentiment = SentimentType.NEGATIVE.value
-            sentiment_log = SentimentType.NEGATIVE
-        elif (
-            "NEU" in predicted_sentiment
-        ):  # For this case neutral will be seen as positive because we only have 2 labels
+                if predicted_sentiment > 3:
+                    pos_score += predicted_score
+                elif predicted_sentiment == 3:
+                    pos_score += predicted_score * 0.1
+                elif predicted_sentiment == 2:
+                    neg_score += predicted_score
+                else:
+                    neg_score += 1.5 * predicted_score
+        else:
+            # Models who use descriptive labels as sentiment labels
+            for prediction in sentiment:
+                predicted_sentiment = prediction["label"].upper()
+                predicted_sentiment_score = prediction["score"]
+
+                if "POS" in predicted_sentiment or predicted_sentiment == "LABEL_1":
+                    pos_score += predicted_sentiment_score
+                elif "NEU" in predicted_sentiment:
+                    pos_score += predicted_sentiment_score * 0.1
+                else:
+                    neg_score += predicted_sentiment_score
+
+        if pos_score >= neg_score:
             sentiment = SentimentType.POSITIVE.value
             sentiment_log = SentimentType.POSITIVE
         else:
-            sentiment = SentimentType.NOT_UNDERSTOOD.value
-            sentiment_log = SentimentType.NOT_UNDERSTOOD
+            sentiment = SentimentType.NEGATIVE.value
+            sentiment_log = SentimentType.NEGATIVE
 
         logger.info(f"Resulting sentiment: {sentiment_log}")
 
@@ -163,6 +171,7 @@ class SentimentAnalyser:
 
         logger.info("Writing the results to a csv file...")
 
+        data["review"] = data["review"].apply(" ".join)
         data.to_csv(os.path.join(output_dir, "results.csv"), index=False)
 
         logger.info("Generating the classification report...")
