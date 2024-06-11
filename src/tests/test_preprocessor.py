@@ -2,7 +2,7 @@
 
 from src.preprocessor import Preprocessor
 
-preprocessor = Preprocessor(sequence_length=37)
+preprocessor = Preprocessor(sequence_length=32)
 
 
 def test_evaluate_read_data_works():
@@ -25,4 +25,5 @@ def test_evaluate_preprocess_text_works():
     print(resulting_text)
 
     # Check the result
-    assert resulting_text == "Such a great movie. I loved the actin"
+    assert resulting_text[0] == "Such a great movie. I loved the"
+    assert resulting_text[1] == "acting."

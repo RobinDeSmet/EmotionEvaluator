@@ -3,6 +3,8 @@
 import os
 import re
 import logging
+from textwrap import wrap
+
 import pandas as pd
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
@@ -101,9 +103,8 @@ class Preprocessor:
         # Remove extra whitespace
         text = re.sub(r"\s+", " ", text).strip()
 
-        # Limit the sequence length
-        logger.error(f"Sequence length: {self.sequence_length}")
-        text = text[: self.sequence_length]
+        # Limit the sequence length by splitting the text
+        text = wrap(text, self.sequence_length)
 
         logger.info(f"Text preprocessed successfully: {text}")
 
