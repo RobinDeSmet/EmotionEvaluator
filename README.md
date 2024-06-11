@@ -16,18 +16,14 @@ The benchmark will contain following items:
 
 ### 1. Docker
 
-If you want to use the containarized version of the app you will need Docker Desktop. Install it via the official documentation: 
-
-https://www.docker.com/products/docker-desktop/.
+If you want to use the containarized version of the app you will need Docker Desktop. You can install it via the [official documentation](https://www.docker.com/products/docker-desktop/).
 
 * Navigate to the root directory of the project
 * Run `docker compose up -d`
 
 ### 2. Development environment
 
-This project uses poetry, please follow the installion guide from this link: 
-
-https://python-poetry.org/docs/#installing-with-the-official-installer
+This project uses poetry, to install it you can follow this [guide](https://python-poetry.org/docs/#installing-with-the-official-installer).
 
 * Navigate to the root directory of the project
 * Create a copy of the `.env.template` file and rename it to: `.env`
@@ -37,10 +33,9 @@ https://python-poetry.org/docs/#installing-with-the-official-installer
 * In another window run `make frontend`. This will start a streamlit frontend that will serve the Emotion Evaluator UI.
 
 ### 3. Benchmark CLI tool
-By default, the Emotion Evaluator uses, `distilbert/distilbert-base-uncased-finetuned-sst-2-english`, as its pretrained sentiment analysis model. For more information check this link:
-https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english 
+By default, the Emotion Evaluator uses, [distilbert/distilbert-base-uncased-finetuned-sst-2-english](https://huggingface.co/distilbert/distilbert-base-uncased-finetuned-sst-2-english), as its pretrained sentiment analysis model.
 
-But, you can play around and create benchmarks for other pretrained models as well. Here is how you can setup and use the CLI tool:
+However, you can play around and create benchmarks for other pretrained models as well. Here is how you can setup and use the CLI tool:
 * Navigate to the root directory of the project
 * Create a copy of the `.env.template` file and rename it to: `.env`
 * Run `poetry install`
