@@ -19,7 +19,7 @@ st.write(
 )
 
 text = st.text_area(
-    "Enter the text you would like to evaluate:", value="", max_chars=512
+    "Enter the text you would like to evaluate:", value="", max_chars=512 * 5
 )
 
 button_clicked = st.button(
