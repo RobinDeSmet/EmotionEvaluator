@@ -1,4 +1,4 @@
-[Amount of samples: 100] Generated in 0:01:05.258694s
+[Amount of samples: 100] Generated in 0:01:04.283275s
 
               precision    recall  f1-score   support
 
