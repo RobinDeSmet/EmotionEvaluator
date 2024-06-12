@@ -1,8 +1,8 @@
 FINDINGS
-  - Applying stemming or lemmatization on the input text reduces the model's performance.
-    This is because the model is able to generalize well and gets extra information out
-    of the form the words are in.
-  - Cleaning the data however improves the model's performance.
+  - Applying stemming or lemmatization from nltk on the input text reduces the model's performance.
+    This is because the model is able to generalize better with its own tokenizer.
+  - Cleaning the data however can improve the model's performance.
   - Financial model will predict 'neutral' very often so the accuracy here is low!
-  - Fastest model is from LiYuan, most accurate model from nlptown.
-  - The model with the best tradeoffs is from distilbert.
+  - Fastest model is from LiYuan
+  - Most accurate model from NLPtown.
+  - The model with the best tradeoffs is from Distilbert.
