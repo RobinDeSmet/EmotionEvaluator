@@ -81,8 +81,10 @@ class Preprocessor:
         """Apply the following preprocessing steps to the text:
             - removing HTML tags
             - removing URLs
+            - removing @ tags
             - removing extra whitespace
             - spelling correction
+            - limit the sequence length
 
         Args:
             text (str): The text to preprocess.
