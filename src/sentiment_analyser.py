@@ -10,8 +10,6 @@ from dotenv import load_dotenv
 from sklearn.metrics import (
     classification_report,
     confusion_matrix,
-    roc_auc_score,
-    roc_curve,
 )
 from transformers import pipeline
 import matplotlib.pyplot as plt
@@ -209,36 +207,6 @@ class SentimentAnalyser:
                 f.write(
                     f"[Predicted: {row[PREDICTED_SENTIMENT_COLUMN_NAME]}, Truth: {row['sentiment']}] Review: {row['review']}\n\n"
                 )
-
-        logger.info("Generating the ROC curve...")
-
-        # Compute ROC curve and ROC area
-        fpr, tpr, _ = roc_curve(
-            data["sentiment"], data[PREDICTED_SENTIMENT_COLUMN_NAME]
-        )
-        roc_auc = roc_auc_score(
-            data["sentiment"], data[PREDICTED_SENTIMENT_COLUMN_NAME]
-        )
-
-        # Plot ROC curve
-        plt.figure(figsize=(10, 7))
-        plt.plot(
-            fpr,
-            tpr,
-            color="darkorange",
-            lw=2,
-            label=f"ROC curve (area = {roc_auc:0.2f})",
-        )
-        plt.plot([0, 1], [0, 1], color="navy", lw=2, linestyle="--")
-        plt.xlim([0.0, 1.0])
-        plt.ylim([0.0, 1.05])
-        plt.xlabel("False Positive Rate")
-        plt.ylabel("True Positive Rate")
-        plt.title("Receiver Operating Characteristic (ROC) Curve")
-        plt.legend(loc="lower right")
-
-        # Save the confusion matrix to a file
-        plt.savefig(os.path.join(output_dir, "roc_curve.png"))
 
         logger.info("Generating the confusion matrix...")
 

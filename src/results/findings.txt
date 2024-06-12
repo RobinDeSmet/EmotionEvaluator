@@ -6,3 +6,6 @@ FINDINGS
   - Fastest model is from LiYuan
   - Most accurate model from NLPtown.
   - The model with the best tradeoffs is from Distilbert.
+  - I use an ROC curve plot to calculate the AUC. But, I do it with the labels, as we have no output probability
+    for the positive or negative class. Since, this is fixed, we cannot vary the decision threshold.
+    Therefore the ROC curve does not hold any real value in this case. I should remove it.
