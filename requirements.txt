@@ -5,6 +5,7 @@ anyio==4.4.0
 astroid==3.2.2
 astunparse==1.6.3
 attrs==23.2.0
+autocorrect==2.6.1
 beautifulsoup4==4.12.3
 blinker==1.8.2
 cachetools==5.3.3
