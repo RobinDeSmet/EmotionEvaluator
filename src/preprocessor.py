@@ -96,6 +96,9 @@ class Preprocessor:
         soup = BeautifulSoup(text, "lxml")
         text = soup.get_text()
 
+        # Remove @ tags
+        text = re.sub(r"@\S+", "", text)
+
         # Remove URLs
         text = re.sub(r"http\S+|www\S+|https\S+", "", text, flags=re.MULTILINE)
 
