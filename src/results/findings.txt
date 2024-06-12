@@ -4,27 +4,5 @@ FINDINGS
     of the form the words are in.
   - Cleaning the data however improves the model's performance.
   - Financial model will predict 'neutral' very often so the accuracy here is low!
-
-distilbert_distilbert-base-uncased-finetuned-sst-2-english
-# BENCHMARK:
-#               precision    recall  f1-score   support
-
-#           -1       0.85      0.91      0.88        58
-#            1       0.87      0.79      0.82        42
-
-#     accuracy                           0.86       100
-#    macro avg       0.86      0.85      0.85       100
-# weighted avg       0.86      0.86      0.86       100
-
-
-Risks, Limitations and Biases
-
-Based on a few experimentations, we observed that this model could produce biased predictions that target underrepresented populations.
-
-For instance, for sentences like This film was filmed in COUNTRY, this binary classification model will give radically different probabilities
-for the positive label depending on the country (0.89 if the country is France, but 0.08 if the country is Afghanistan) when nothing
-in the input indicates such a strong semantic shift. In this colab, Aurélien Géron made an interesting map plotting these probabilities for each country.
-Map of positive probabilities per country.
-
-We strongly advise users to thoroughly probe these aspects on their use-cases in order to evaluate the risks of this model.
-We recommend looking at the following bias evaluation datasets as a place to start: WinoBias, WinoGender, Stereoset.
+  - Fastest model is from LiYuan, most accurate model from nlptown.
+  - The model with the best tradeoffs is from distilbert.
