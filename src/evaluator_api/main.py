@@ -47,7 +47,7 @@ async def evaluate_text(review: Review):
 
     try:
         # Preprocess the text
-        text = preprocessor.preprocess_text(review.content)
+        text = preprocessor.preprocess_text(review.content, use_autocorreect=True)
 
         # Analyse the sentiment
         sentiment = sentiment_analyser.get_sentiment(text)

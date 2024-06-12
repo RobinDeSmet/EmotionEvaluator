@@ -17,13 +17,13 @@ def test_evaluate_read_data_works():
 
 def test_evaluate_preprocess_text_works():
     """Test if the preprocess text function works correctly."""
-    test_data = "<br></br>Such a     great movie. https://malicous_url.com <div> I loved the acting.</div>"
+    test_data = "<br></br>Such a     greta and beautifil movie. https://malicous_url.com <div> I loved the acting.</div>"
 
     # Preprocess the text
-    resulting_text = preprocessor.preprocess_text(test_data)
+    resulting_text = preprocessor.preprocess_text(test_data, use_autocorreect=True)
 
     print(resulting_text)
 
     # Check the result
-    assert resulting_text[0] == "Such a great movie. I loved the"
-    assert resulting_text[1] == "acting."
+    assert resulting_text[0] == "Such a great and beautiful"
+    assert resulting_text[1] == "movie. I loved the acting."

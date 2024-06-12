@@ -8,6 +8,7 @@ from textwrap import wrap
 import pandas as pd
 from bs4 import BeautifulSoup
 from dotenv import load_dotenv
+from autocorrect import Speller
 
 from src.custom_types import SentimentType
 
@@ -26,6 +27,10 @@ class Preprocessor:
         logger.info("Initializing the preprocessor...")
 
         self.sequence_length = sequence_length
+
+        self.autocorrect = Speller(
+            lang="en", fast=True
+        )  # This will correct basic spelling mistakes
 
         logger.info("Preprocessor initialized successfully")
 
@@ -72,18 +77,12 @@ class Preprocessor:
         logger.info(f"Data loaded successfully [{len(resulting_df['review'])} entries]")
         return resulting_df
 
-    def preprocess_text(self, text: str) -> str:
+    def preprocess_text(self, text: str, use_autocorreect: bool = False) -> str:
         """Apply the following preprocessing steps to the text:
             - removing HTML tags
             - removing URLs
             - removing extra whitespace
-            TODO: Spelling correction
-
-            Following things were tried but reduced the model's performance:
-            - Removing special characters and numbers
-            - Tokenizing the text
-            - Removing stop words
-            - Stemming or Lemmatizing the tokens
+            - spelling correction
 
         Args:
             text (str): The text to preprocess.
@@ -102,6 +101,10 @@ class Preprocessor:
 
         # Remove extra whitespace
         text = re.sub(r"\s+", " ", text).strip()
+
+        # Autocorrect the text
+        if use_autocorreect:
+            text = self.autocorrect(text)
 
         # Limit the sequence length by splitting the text
         text = wrap(text, self.sequence_length)

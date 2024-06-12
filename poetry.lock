@@ -112,6 +112,16 @@ tests-mypy = ["mypy (>=1.6)", "pytest-mypy-plugins"]
 tests-no-zope = ["attrs[tests-mypy]", "cloudpickle", "hypothesis", "pympler", "pytest (>=4.3.0)", "pytest-xdist[psutil]"]
 
 [[package]]
+name = "autocorrect"
+version = "2.6.1"
+description = "Spelling Corrector"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "autocorrect-2.6.1.tar.gz", hash = "sha256:2bc68192dc645b44bece2613caac338e93548c3dac9c563095b27224c7fd4391"},
+]
+
+[[package]]
 name = "beautifulsoup4"
 version = "4.12.3"
 description = "Screen-scraping library"
@@ -4120,4 +4130,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "828aa4c5cdf5e312c5b894756360bd1fab9e7b7b556172889bbb3e47469dbef5"
+content-hash = "f94c7fe5dfacc2bedf30fa8b96e17fb684c80dccfbe1adc456853cdc55f05d00"
