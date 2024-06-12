@@ -26,7 +26,6 @@ If you want to use the containarized version of the app you will need Docker Des
 This project uses poetry, to install it you can follow this [guide](https://python-poetry.org/docs/#installing-with-the-official-installer).
 
 - Navigate to the root directory of the project
-- Create a copy of the `.env.template` file and rename it to: `.env`
 - Run `poetry install`
 - Run `poetry shell`
 - To start the backend run: `make backend`. This will run a Fast API server with the endpoints needed to run the Emotion Evaluator.
