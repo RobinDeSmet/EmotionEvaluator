@@ -36,12 +36,19 @@ class SentimentAnalyser:
         self,
         model: str = MODEL,
         preprocessor: Preprocessor = Preprocessor(),
+        framework="tf",
     ):
         logger.info("Initializing the sentiment analyser...")
 
         self.model = model
 
-        self.pipeline = pipeline("sentiment-analysis", model=self.model)
+        self.framework = framework
+
+        self.pipeline = pipeline(
+            "sentiment-analysis",
+            model=self.model,
+            framework=self.framework,
+        )
 
         self.preprocessor = preprocessor
 

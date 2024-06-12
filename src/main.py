@@ -40,6 +40,13 @@ if __name__ == "__main__":
         help="Max input sequence length for the model",
     )
 
+    parser.add_argument(
+        "--framework",
+        default="tf",
+        type=str,
+        help="Tells the script which framework to use (tf or pt)",
+    )
+
     args = parser.parse_args()
 
     configure_logging()
@@ -49,7 +56,9 @@ if __name__ == "__main__":
     logger.info(f"Arguments: {args}")
 
     preprocessor = Preprocessor(sequence_length=int(args.sequence_length))
-    sentiment_analyser = SentimentAnalyser(model=args.model, preprocessor=preprocessor)
+    sentiment_analyser = SentimentAnalyser(
+        model=args.model, preprocessor=preprocessor, framework=args.framework
+    )
 
     data = preprocessor.read_in_data(data_path=args.data)
 
