@@ -10,7 +10,6 @@ The benchmark will contain following items:
 - The preprocessed text and the predicted sentiment
 - A classification report
 - A confusion matrix
-- ROC curve
 
 ## Setup
 
