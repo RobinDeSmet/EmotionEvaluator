@@ -18,6 +18,7 @@ logger = logging.getLogger(__name__)
 
 load_dotenv()
 MODEL = os.getenv("MODEL")
+INPUT_TEXT_MAX_LENGTH = int(os.getenv("INPUT_TEXT_MAX_LENGTH"))
 
 app = FastAPI()
 preprocessor = Preprocessor()
@@ -27,7 +28,7 @@ sentiment_analyser = SentimentAnalyser(model=MODEL)
 class Review(BaseModel):
     """Review object to be evaluated"""
 
-    content: str = Field(..., max_length=512)
+    content: str = Field(..., max_length=INPUT_TEXT_MAX_LENGTH)
 
 
 @app.get("/")

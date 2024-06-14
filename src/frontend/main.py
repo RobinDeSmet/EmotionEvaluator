@@ -1,15 +1,21 @@
 """This module contains the Streamlit frontend for the Emotion Evaluator application."""
 
+import os
 from http import HTTPStatus
 
 import streamlit as st
 import requests
+from dotenv import load_dotenv
 
 from src.custom_types import SentimentType
 from src.frontend.utils import get_url
 from src.utils import configure_logging
 
 configure_logging()
+
+load_dotenv()
+
+INPUT_TEXT_MAX_LENGTH = int(os.getenv("INPUT_TEXT_MAX_LENGTH"))
 
 st.title("Emotion Evaluator")
 
@@ -19,7 +25,9 @@ st.write(
 )
 
 text = st.text_area(
-    "Enter the text you would like to evaluate:", value="", max_chars=512 * 5
+    "Enter the text you would like to evaluate:",
+    value="",
+    max_chars=INPUT_TEXT_MAX_LENGTH,
 )
 
 button_clicked = st.button(
